@@ -1,11 +1,11 @@
+import React from 'react';
 import { motion } from 'motion/react';
-import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Card } from './ui/card';
 import { Button } from './ui/button';
-import { JoinNowModal } from './JoinNowModal';
 
 export function MissionSection() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const navigate = useNavigate();
   
   const pillars = [
     {
@@ -241,7 +241,7 @@ export function MissionSection() {
           >
             <Button 
               size="lg"
-              onClick={() => setIsModalOpen(true)}
+              onClick={() => navigate('/login')}
               className="bg-gradient-to-r from-green-500 to-orange-500 hover:from-green-600 hover:to-orange-600 text-white px-12 py-6 text-xl rounded-full shadow-2xl hover:shadow-green-500/25 transition-all duration-300"
             >
               <motion.span
@@ -265,11 +265,6 @@ export function MissionSection() {
         </motion.div>
       </div>
 
-      {/* Join Now Modal */}
-      <JoinNowModal 
-        isOpen={isModalOpen} 
-        onClose={() => setIsModalOpen(false)} 
-      />
     </section>
   );
 }

@@ -1,9 +1,10 @@
+import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { useState } from 'react';
 import { Button } from './ui/button';
 import { LiveCounter } from './LiveCounter';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { JoinNowModal } from './JoinNowModal';
+import { Link } from 'react-router-dom';
 import zeefitLogo from 'figma:asset/e9b8b703e22e4f666412667c60adb6e66b816ebd.png';
 
 export function HeroSection() {
@@ -84,6 +85,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.7 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
           >
             <Button 
               size="lg" 
@@ -92,6 +94,14 @@ export function HeroSection() {
             >
               Join the Movement
             </Button>
+            <Link to="/marathon">
+              <Button 
+                size="lg" 
+                className="bg-gradient-to-r from-emerald-500 to-blue-500 hover:from-emerald-600 hover:to-blue-600 text-white px-12 py-6 text-xl rounded-full zeefit-glow transition-all duration-300 hover:scale-105"
+              >
+                Start Your Marathon Route
+              </Button>
+            </Link>
           </motion.div>
         </motion.div>
 
