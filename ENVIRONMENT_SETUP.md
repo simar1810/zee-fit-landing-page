@@ -14,6 +14,7 @@ cp env.example .env.local
 
 Edit `.env.local` with your specific values:
 
+
 ```env
 # API Configuration
 VITE_API_BASE_URL=http://localhost:3010/api
