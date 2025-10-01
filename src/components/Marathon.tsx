@@ -6,6 +6,7 @@ import { apiService } from '../services/api';
 import { MarathonOtpModal } from './MarathonOtpModal';
 import { MarathonCaloriesModal } from './MarathonCaloriesModal';
 import { ChallengeSelectionModal } from './ChallengeSelectionModal';
+import { MarathonSuccessModal } from './MarathonSuccessModal';
 
 // Import images
 import runnerImg from '../assets/pexels-photo-841130.jpeg';
@@ -102,6 +103,7 @@ export function Marathon() {
   const [showOtpModal, setShowOtpModal] = useState(false);
   const [showChallengeSelection, setShowChallengeSelection] = useState(false);
   const [showCaloriesModal, setShowCaloriesModal] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [otpPhone, setOtpPhone] = useState('');
   const [otpCountryCode, setOtpCountryCode] = useState('+91');
   const [selectedChallenges, setSelectedChallenges] = useState<string[]>([]);
@@ -320,8 +322,14 @@ export function Marathon() {
 
   const handleCaloriesComplete = () => {
     setShowCaloriesModal(false);
-    // Redirect to challenges
-    window.location.href = '/challenges';
+    // Show success modal instead of redirecting
+    setShowSuccessModal(true);
+  };
+
+  const handleSuccessRedirect = () => {
+    setShowSuccessModal(false);
+    // Redirect to home page
+    window.location.href = '/';
   };
 
   const handleOtpError = (message: string) => {
@@ -898,7 +906,7 @@ export function Marathon() {
         <motion.div
           style={{
             height: '100%',
-            background: 'linear-gradient(to right, #10b981, #3b82f6)'
+            background: 'linear-gradient(to right, #10b981, #10b981)'
           }}
           initial={{ width: 0 }}
           animate={{ width: `${progressPercentage}%` }}
@@ -1245,6 +1253,13 @@ export function Marathon() {
         onClose={() => setShowCaloriesModal(false)}
         userWeight={parseFloat(formData.weight) || 70}
         onComplete={handleCaloriesComplete}
+      />
+
+      {/* Success Modal */}
+      <MarathonSuccessModal
+        isOpen={showSuccessModal}
+        onClose={() => setShowSuccessModal(false)}
+        onRedirect={handleSuccessRedirect}
       />
       </div>
     </>

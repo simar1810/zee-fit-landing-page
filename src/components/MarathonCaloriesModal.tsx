@@ -9,7 +9,7 @@ interface MarathonCaloriesModalProps {
   onComplete: () => void;
 }
 
-const TOTAL_INDIA_CALORIES = 1000000;
+const TOTAL_INDIA_CALORIES = 10000;
 
 export const MarathonCaloriesModal: React.FC<MarathonCaloriesModalProps> = ({
   isOpen,

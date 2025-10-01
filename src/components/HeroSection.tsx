@@ -87,21 +87,42 @@ export function HeroSection() {
             transition={{ duration: 1, delay: 0.7 }}
             className="flex flex-col sm:flex-row gap-4 justify-center items-center"
           >
+             <Link to="/rfu">
+             <Button
+  size="lg"
+  style={{
+    background: '#34A853', // emerald to blue
+    color: 'white',
+    padding: '1.5rem 3rem',
+    fontSize: '1.25rem',
+    borderRadius: '9999px', // full rounded
+    boxShadow: '0 8px 15px rgba(0,0,0,0.3)',
+    transition: 'all 0.3s ease',
+    cursor: 'pointer',
+    textShadow: '0 0 8px rgba(255,255,255,0.6)',
+  }}
+  onMouseEnter={(e) => {
+    e.currentTarget.style.transform = 'scale(1.05)';
+    e.currentTarget.style.boxShadow = '0 12px 20px rgba(0,0,0,0.5), 0 0 20px rgba(59,130,246,0.6)';
+  }}
+  onMouseLeave={(e) => {
+    e.currentTarget.style.transform = 'scale(1)';
+    e.currentTarget.style.boxShadow = '0 8px 15px rgba(0,0,0,0.3)';
+  }}
+>
+  Join Run for Unity
+</Button>
+
+
+            </Link>
             <Button 
               size="lg" 
               onClick={handleJoinClick}
-              className="bg-gradient-to-r from-green-500 to-orange-500 hover:from-green-600 hover:to-orange-600 text-white px-12 py-6 text-xl rounded-full zeefit-glow transition-all duration-300 hover:scale-105"
+              className="bg-orange-500 hover:bg-orange-600 text-white px-12 py-6 text-xl rounded-full zeefit-glow transition-all duration-300 hover:scale-105"
             >
               Join the Movement
             </Button>
-            <Link to="/rfu">
-              <Button 
-                size="lg" 
-                className="bg-gradient-to-r from-emerald-500 to-blue-500 hover:from-emerald-600 hover:to-blue-600 text-white px-12 py-6 text-xl rounded-full zeefit-glow transition-all duration-300 hover:scale-105"
-              >
-                Start Your Marathon Route
-              </Button>
-            </Link>
+           
           </motion.div>
         </motion.div>
 

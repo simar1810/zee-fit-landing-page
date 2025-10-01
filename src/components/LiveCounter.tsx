@@ -50,7 +50,7 @@ function CounterItem({ label, startValue, endValue, icon, delay }: CounterItemPr
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.3 }}
         >
-          {count.toLocaleString()}
+          {count.toLocaleString()}+
         </motion.span>
       </div>
       <p className="text-gray-200 text-sm md:text-base">{label}</p>
@@ -71,22 +71,22 @@ export function LiveCounter() {
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
       <CounterItem
         label="Community Steps Today"
-        startValue={1200000}
-        endValue={1242891}
+        startValue={0}
+        endValue={500}
         icon="👣"
         delay={500}
       />
       <CounterItem
         label="Meals Logged"
-        startValue={4200}
-        endValue={4310}
+        startValue={0}
+        endValue={100}
         icon="🥗"
         delay={1000}
       />
       <CounterItem
         label="People Together"
-        startValue={500}
-        endValue={582}
+        startValue={0}
+        endValue={100}
         icon="🔥"
         delay={1500}
       />

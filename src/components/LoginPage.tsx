@@ -25,7 +25,7 @@ export const LoginPage: React.FC = () => {
     setCookie('refreshToken', authData.refreshToken, 30);
     setCookie('user', JSON.stringify(authData.user), 7);
     // Redirect to marathon page
-    navigate('/challenges');
+    navigate('/#/challenges');
   };
   
   const navigate = useNavigate();

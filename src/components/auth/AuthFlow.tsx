@@ -39,7 +39,7 @@ export const AuthFlow: React.FC = () => {
   };
 
   const handleCaloriesComplete = () => {
-    navigate('/challenges');
+    navigate('/#/challenges');
   };
 
   const handleBack = () => {
