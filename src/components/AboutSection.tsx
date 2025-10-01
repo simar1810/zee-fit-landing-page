@@ -4,6 +4,8 @@ import { Card } from './ui/card';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { JoinNowModal } from './JoinNowModal';
 import wellnessZLogo from 'figma:asset/058903fc878eccbba2b6329afa742dcea04028d4.png';
+import simarImage from '../assets/simar.webp';
+import ananayImage from '../assets/basic.png';
 
 export function AboutSection() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -12,15 +14,15 @@ export function AboutSection() {
   const founders = [
     {
       name: "Simarpreet Singh",
-      role: "Co-Founder & CEO",
+      role: "Founder & CEO",
       quote: "Fitness shouldn't be a lonely journey. We're building the community that transforms lives.",
-      image: "/src/assets/simar.webp"
+      image: simarImage
     },
     {
       name: "Ananay Mehra",
-      role: "Co-Founder & CTO",
+      role: "Co-Founder & CMO",
       quote: "Technology should bring people together, not isolate them. That's the Zeefit difference.",
-      image: "/src/assets/basic.png"
+      image: ananayImage
     }
   ];
 

@@ -27,7 +27,7 @@ function HomePage() {
       <MovementStory />
       
       {/* Community Voices - Video Grid */}
-      <CommunityVoices />
+      {/* <CommunityVoices /> */}
       
       {/* Micro Gamification - Interactive Cards */}
       <MicroGamification />
