@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import { HeroSection } from './components/HeroSection';
 import { MovementStory } from './components/MovementStory';
 import { CommunityVoices } from './components/CommunityVoices';
