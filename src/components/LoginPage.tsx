@@ -18,7 +18,6 @@ export const LoginPage: React.FC = () => {
   // For now, let's handle login without the auth context
   // We'll redirect to marathon page after successful login
   const handleLogin = (authData: any) => {
-    console.log('LoginPage: Login successful, redirecting to marathon');
     // Store auth data in localStorage for now
     // Store tokens in cookies
     

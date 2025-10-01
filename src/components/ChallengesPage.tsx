@@ -31,10 +31,6 @@ export const ChallengesPage: React.FC = () => {
   };
 
   useEffect(() => {
-    console.log('ChallengesPage: User authenticated:', !!user);
-    console.log('ChallengesPage: User data:', user);
-    console.log('ChallengesPage: Current route:', location.pathname);
-    console.log('ChallengesPage: Challenge ID:', id);
     
     if (user) {
       if (id) {
@@ -66,9 +62,7 @@ export const ChallengesPage: React.FC = () => {
       }
       
       // Load user's joined challenges instead of all challenges
-      console.log('Loading my challenges...');
       const response = await apiService.getMyChallenges();
-      console.log('My challenges response:', response);
       setChallenges(response.data?.challenges || []);
     } catch (err: any) {
       console.error('Error loading challenges:', err);
@@ -110,9 +104,7 @@ export const ChallengesPage: React.FC = () => {
       setIsLoading(true);
       setError(null);
       
-      console.log('Loading challenge details for ID:', challengeId);
       const response = await apiService.getChallengeById(challengeId);
-      console.log('Challenge details response:', response);
       if (response.data && (response.data as any).challenge) {
         setSelectedChallenge((response.data as any).challenge);
       } else {
@@ -131,9 +123,7 @@ export const ChallengesPage: React.FC = () => {
       setIsLoading(true);
       setError(null);
       
-      console.log('Loading challenge progress for ID:', challengeId);
       const response = await apiService.getChallengeProgress(challengeId);
-      console.log('Challenge progress response:', response);
       setChallengeProgress(response.data);
     } catch (err: any) {
       console.error('Error loading challenge progress:', err);

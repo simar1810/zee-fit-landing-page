@@ -73,8 +73,6 @@ export const MarathonOtpModal: React.FC<MarathonOtpModalProps> = ({
     e.preventDefault();
     
     const otpString = otp.join('');
-    console.log('MarathonOtpModal: OTP entered:', otpString);
-    console.log('MarathonOtpModal: OTP length:', otpString.length);
     
     if (otpString.length !== 6) {
       onError('Please enter the complete 6-digit OTP');
@@ -126,15 +124,8 @@ export const MarathonOtpModal: React.FC<MarathonOtpModalProps> = ({
         device: navigator.userAgent,
       };
 
-      console.log('MarathonOtpModal: Sending OTP verification request:', verifyData);
-      console.log('MarathonOtpModal: Phone:', phone);
-      console.log('MarathonOtpModal: Country Code:', countryCode);
-      console.log('MarathonOtpModal: OTP String:', otpString);
 
       const authData = await apiService.verifyOtp(verifyData);
-      console.log('MarathonOtpModal: OTP verification successful, auth data:', authData);
-      console.log('MarathonOtpModal: Auth data type:', typeof authData);
-      console.log('MarathonOtpModal: Auth data keys:', Object.keys(authData || {}));
       onVerified(authData);
     } catch (error: any) {
       onError(error.message || 'Invalid OTP. Please try again.');
@@ -147,7 +138,6 @@ export const MarathonOtpModal: React.FC<MarathonOtpModalProps> = ({
     if (resendTimer > 0) return;
     
     try {
-      console.log('MarathonOtpModal: Resending OTP to:', phone, countryCode);
       await apiService.sendOtp({ phone, countryCode });
       setResendTimer(60); // 60 seconds cooldown
     } catch (error: any) {

@@ -75,11 +75,9 @@ export function Marathon() {
     if (token && userData) {
       setIsAuthenticated(true);
       setUser(JSON.parse(userData));
-      console.log('Marathon: User authenticated from cookies');
     } else {
       setIsAuthenticated(false);
       setUser(null);
-      console.log('Marathon: User not authenticated');
     }
   }, []);
   const [currentStep, setCurrentStep] = useState(0);
@@ -247,16 +245,13 @@ export function Marathon() {
       localStorage.setItem('registrationData', JSON.stringify(registrationData));
       
       // Send OTP first, then show modal
-      console.log('Marathon: Setting OTP phone to:', formData.mobile);
       setOtpPhone(formData.mobile);
       
       try {
-        console.log('Marathon: Sending OTP to:', formData.mobile);
         await apiService.sendOtp({ 
           phone: formData.mobile, 
           countryCode: '+91' // Default to India for now
         });
-        console.log('Marathon: OTP sent successfully');
         setShowOtpModal(true);
       } catch (error: any) {
         console.error('Marathon: Failed to send OTP:', error);
@@ -281,7 +276,6 @@ export function Marathon() {
   };
 
   const handleOtpVerified = (authData: any) => {
-    console.log('Marathon: OTP verified, auth data:', authData);
     setShowOtpModal(false);
     
     // Store auth data in cookies
@@ -293,10 +287,6 @@ export function Marathon() {
     setIsAuthenticated(true);
     setUser(authData.user);
     
-    console.log('Marathon: User authenticated and stored in cookies');
-    console.log('Marathon: Access token (first 20 chars):', authData.accessToken.substring(0, 20) + '...');
-    console.log('Marathon: Refresh token (first 20 chars):', authData.refreshToken.substring(0, 20) + '...');
-    console.log('Marathon: User data:', authData.user);
     
     // Get user weight from stored registration data
     const storedData = localStorage.getItem('registrationData');
@@ -311,16 +301,13 @@ export function Marathon() {
   };
 
   const handleChallengesSelected = async (challengeIds: string[]) => {
-    console.log('Marathon: Challenges selected:', challengeIds);
     setSelectedChallenges(challengeIds);
     setShowChallengeSelection(false);
 
     // Join selected challenges
     if (challengeIds.length > 0) {
       try {
-        console.log('Marathon: Joining challenges:', challengeIds);
         const result = await apiService.joinMultipleChallenges(challengeIds);
-        console.log('Marathon: Challenge join result:', result);
       } catch (error: any) {
         console.error('Marathon: Failed to join challenges:', error);
         // Continue with flow even if challenge joining fails
@@ -1142,7 +1129,7 @@ export function Marathon() {
                       objectFit: 'cover',
                       backgroundColor: '#374151'
                     }}
-                    onLoad={() => console.log('Mobile image loaded:', fitnessImages[currentStep])}
+                    onLoad={() => {}}
                     onError={(e) => {
                       console.error('Mobile image failed to load:', fitnessImages[currentStep], e);
                       e.currentTarget.style.backgroundColor = '#6b7280';
@@ -1200,7 +1187,7 @@ export function Marathon() {
                   objectFit: 'cover',
                   backgroundColor: '#374151'
                 }}
-                onLoad={() => console.log('Image loaded:', fitnessImages[currentStep])}
+                onLoad={() => {}}
                 onError={(e) => {
                   console.error('Image failed to load:', fitnessImages[currentStep], e);
                   e.currentTarget.style.backgroundColor = '#6b7280';

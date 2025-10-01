@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Check, Target, Calendar, Users, ArrowRight } from 'lucide-react';
+import config from '../utils/config';
 
 interface Challenge {
   _id: string;
@@ -48,7 +49,7 @@ export function ChallengeSelectionModal({
       setLoading(true);
       setError(null);
       
-      const response = await fetch('http://localhost:3010/api/challenges/get-all', {
+      const response = await fetch(`${config.API_BASE_URL}/challenges/get-all`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${getCookie('accessToken')}`,
@@ -169,7 +170,9 @@ export function ChallengeSelectionModal({
             maxWidth: '800px',
             maxHeight: '90vh',
             overflow: 'hidden',
-            boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
+            boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+            display: 'flex',
+            flexDirection: 'column'
           }}
         >
           {/* Header */}
@@ -226,7 +229,7 @@ export function ChallengeSelectionModal({
           {/* Content */}
           <div style={{
             padding: '1.5rem',
-            maxHeight: '60vh',
+            flex: 1,
             overflowY: 'auto'
           }}>
             {loading ? (
@@ -406,7 +409,8 @@ export function ChallengeSelectionModal({
             borderTop: '1px solid #374151',
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'space-between'
+            justifyContent: 'space-between',
+            flexShrink: 0
           }}>
             <div style={{ color: '#9ca3af', fontSize: '0.875rem' }}>
               {selectedChallenges.length} challenge{selectedChallenges.length !== 1 ? 's' : ''} selected
@@ -438,16 +442,19 @@ export function ChallengeSelectionModal({
                 onClick={handleContinue}
                 disabled={selectedChallenges.length === 0}
                 style={{
-                  padding: '0.5rem 1rem',
+                  padding: '0.75rem 1.5rem',
                   backgroundColor: selectedChallenges.length > 0 ? '#10b981' : '#4b5563',
                   color: 'white',
                   border: 'none',
-                  borderRadius: '0.375rem',
+                  borderRadius: '0.5rem',
                   cursor: selectedChallenges.length > 0 ? 'pointer' : 'not-allowed',
-                  fontSize: '0.875rem',
+                  fontSize: '1rem',
+                  fontWeight: '600',
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '0.5rem'
+                  gap: '0.5rem',
+                  minWidth: '120px',
+                  justifyContent: 'center'
                 }}
                 onMouseEnter={(e) => {
                   if (selectedChallenges.length > 0) {

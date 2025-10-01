@@ -65,21 +65,16 @@ const ProtectedRoute = ({ children }: { children: any }) => {
       const token = getCookie('accessToken');
       const user = getCurrentUser();
       
-      console.log('ProtectedRoute - Token exists:', !!token);
-      console.log('ProtectedRoute - User exists:', !!user);
       
       if (!token || !user) {
-        console.log('ProtectedRoute - No token or user, redirecting to home');
         setAuthState({ isAuthenticated: false, isLoading: false });
         return;
       }
       
       // Validate token with backend
       try {
-        console.log('ProtectedRoute - Validating token with backend...');
-        console.log('ProtectedRoute - Token (first 20 chars):', token ? token.substring(0, 20) + '...' : 'null');
         
-        const response = await fetch('http://localhost:3010/api/users/me', {
+        const response = await fetch(`${config.API_BASE_URL}/users/me`, {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -87,19 +82,15 @@ const ProtectedRoute = ({ children }: { children: any }) => {
           },
         });
         
-        console.log('ProtectedRoute - Backend response status:', response.status);
         
         if (response.ok) {
-          console.log('ProtectedRoute - Token is valid');
           setAuthState({ isAuthenticated: true, isLoading: false });
         } else if (response.status === 401) {
-          console.log('ProtectedRoute - Token expired, attempting refresh...');
           
           // Try to refresh the token
           const refreshToken = getCookie('refreshToken');
           if (refreshToken) {
             try {
-              console.log('ProtectedRoute - Attempting token refresh...');
               const refreshResponse = await fetch(`${config.API_BASE_URL}/auth/refresh`, {
                 method: 'POST',
                 headers: {
@@ -110,7 +101,6 @@ const ProtectedRoute = ({ children }: { children: any }) => {
               
               if (refreshResponse.ok) {
                 const refreshData = await refreshResponse.json();
-                console.log('ProtectedRoute - Token refreshed successfully');
                 
                 // Update tokens
                 setCookie('accessToken', refreshData.accessToken, 7);
@@ -119,30 +109,24 @@ const ProtectedRoute = ({ children }: { children: any }) => {
                 setAuthState({ isAuthenticated: true, isLoading: false });
                 return;
               } else {
-                console.log('ProtectedRoute - Token refresh failed, status:', refreshResponse.status);
               }
             } catch (refreshError) {
               console.error('ProtectedRoute - Token refresh error:', refreshError);
             }
           } else {
-            console.log('ProtectedRoute - No refresh token available');
           }
           
           // If we get here, refresh failed or no refresh token
-          console.log('ProtectedRoute - Authentication failed, clearing tokens');
           clearAllAuthData();
           setAuthState({ isAuthenticated: false, isLoading: false });
         } else {
-          console.log('ProtectedRoute - Token is invalid, status:', response.status);
           const errorData = await response.json().catch(() => ({}));
-          console.log('ProtectedRoute - Error response:', errorData);
           
 
           setAuthState({ isAuthenticated: false, isLoading: false });
         }
       } catch (error) {
         console.error('ProtectedRoute - Token validation failed:', error);
-        console.log('ProtectedRoute - Network error or server not running');
         
         // Clear invalid tokens
         clearAllAuthData();
@@ -179,7 +163,6 @@ const ProtectedRoute = ({ children }: { children: any }) => {
   }
   
   if (!authState.isAuthenticated) {
-    console.log('User not authenticated, redirecting to home');
     return <Navigate to="/" replace />;
   }
   
@@ -191,7 +174,7 @@ function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
-      <Route path="/marathon" element={<Marathon />} />
+      <Route path="/rfu" element={<Marathon />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/challenges" element={
         <ProtectedRoute children={<ChallengesPage />} />

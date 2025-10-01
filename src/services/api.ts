@@ -102,10 +102,6 @@ class ApiService {
     const url = `${API_BASE_URL}${endpoint}`;
     const token = this.getAuthToken();
 
-    console.log(`API Request: ${endpoint}`);
-    console.log('Token available:', !!token);
-    console.log('Token value:', token ? `${token.substring(0, 20)}...` : 'null');
-    console.log('Full token length:', token ? token.length : 0);
 
     const defaultHeaders: HeadersInit = {
       'Content-Type': 'application/json',
@@ -124,18 +120,12 @@ class ApiService {
     };
 
     try {
-      console.log('Making request to:', url);
-      console.log('Request headers:', config.headers);
       const response = await fetch(url, config);
-      console.log('Response status:', response.status);
-      console.log('Response headers:', Object.fromEntries(response.headers.entries()));
       const data = await response.json();
-      console.log('Response data:', data);
 
       if (!response.ok) {
         // Handle 401 Unauthorized - token might be expired
         if (response.status === 401) {
-          console.log('401 Unauthorized - attempting token refresh');
           try {
             const refreshToken = getCookie('refreshToken');
             if (refreshToken) {
@@ -180,7 +170,6 @@ class ApiService {
 
   // Authentication Methods
   async sendOtp(request: SendOtpRequest): Promise<ApiResponse> {
-    console.log('API Service: Sending OTP request:', request);
     return this.makeRequest('/auth/otp/request', {
       method: 'POST',
       body: JSON.stringify(request),
@@ -192,8 +181,6 @@ class ApiService {
       method: 'POST',
       body: JSON.stringify(request),
     });
-    console.log('API Service: verifyOtp response:', response);
-    console.log('API Service: response.data:', response.data);
     
       // The response structure is { accessToken, refreshToken, user, status_code }
       // Extract the auth data from the response

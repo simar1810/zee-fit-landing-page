@@ -24,7 +24,6 @@ export const config = {
 // Debug logging helper
 export const debugLog = (...args: any[]) => {
   if (config.ENABLE_DEBUG) {
-    console.log('[DEBUG]', ...args);
   }
 };
 

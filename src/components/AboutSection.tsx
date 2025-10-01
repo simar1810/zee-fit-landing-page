@@ -14,13 +14,13 @@ export function AboutSection() {
       name: "Simarpreet Singh",
       role: "Co-Founder & CEO",
       quote: "Fitness shouldn't be a lonely journey. We're building the community that transforms lives.",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?crop=face&fit=crop&w=300&h=300"
+      image: "/src/assets/simar.webp"
     },
     {
       name: "Ananay Mehra",
       role: "Co-Founder & CTO",
       quote: "Technology should bring people together, not isolate them. That's the Zeefit difference.",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?crop=face&fit=crop&w=300&h=300"
+      image: "/src/assets/basic.png"
     }
   ];
 
