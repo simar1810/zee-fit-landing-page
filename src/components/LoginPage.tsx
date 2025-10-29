@@ -1,9 +1,9 @@
+import { AnimatePresence, motion } from 'framer-motion';
+import { ArrowLeft, ArrowRight, Loader2, Phone, Shield } from 'lucide-react';
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, Phone, Shield, Loader2, ArrowRight } from 'lucide-react';
-import { setCookie } from '../utils/cookies';
-import { apiService } from '../services/api';
 import { useNavigate } from 'react-router-dom';
+import { apiService } from '../services/api';
+import { setCookie } from '../utils/cookies';
 
 export const LoginPage: React.FC = () => {
   const [currentStep, setCurrentStep] = useState<'phone' | 'otp'>('phone');
@@ -16,7 +16,7 @@ export const LoginPage: React.FC = () => {
   const inputRefs = React.useRef<(HTMLInputElement | null)[]>([]);
 
   // For now, let's handle login without the auth context
-  // We'll redirect to marathon page after successful login
+  // We'll redirect to challenges page after successful login
   const handleLogin = (authData: any) => {
     // Store auth data in localStorage for now
     // Store tokens in cookies
@@ -24,7 +24,7 @@ export const LoginPage: React.FC = () => {
     setCookie('accessToken', authData.accessToken, 7);
     setCookie('refreshToken', authData.refreshToken, 30);
     setCookie('user', JSON.stringify(authData.user), 7);
-    // Redirect to marathon page
+    // Redirect to challenges page
     navigate('/#/challenges');
   };
   

@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import zeefitLogo from 'figma:asset/e9b8b703e22e4f666412667c60adb6e66b816ebd.png';
 import { motion } from 'motion/react';
-import { Button } from './ui/button';
-import { LiveCounter } from './LiveCounter';
+import React, { useState } from 'react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { JoinNowModal } from './JoinNowModal';
-import { Link } from 'react-router-dom';
-import zeefitLogo from 'figma:asset/e9b8b703e22e4f666412667c60adb6e66b816ebd.png';
+import { LiveCounter } from './LiveCounter';
+import { Button } from './ui/button';
 
 export function HeroSection() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -87,34 +86,6 @@ export function HeroSection() {
             transition={{ duration: 1, delay: 0.7 }}
             className="flex flex-col sm:flex-row gap-4 justify-center items-center"
           >
-             <Link to="/rfu">
-             <Button
-  size="lg"
-  style={{
-    background: '#34A853', // emerald to blue
-    color: 'white',
-    padding: '1.5rem 3rem',
-    fontSize: '1.25rem',
-    borderRadius: '9999px', // full rounded
-    boxShadow: '0 8px 15px rgba(0,0,0,0.3)',
-    transition: 'all 0.3s ease',
-    cursor: 'pointer',
-    textShadow: '0 0 8px rgba(255,255,255,0.6)',
-  }}
-  onMouseEnter={(e) => {
-    e.currentTarget.style.transform = 'scale(1.05)';
-    e.currentTarget.style.boxShadow = '0 12px 20px rgba(0,0,0,0.5), 0 0 20px rgba(59,130,246,0.6)';
-  }}
-  onMouseLeave={(e) => {
-    e.currentTarget.style.transform = 'scale(1)';
-    e.currentTarget.style.boxShadow = '0 8px 15px rgba(0,0,0,0.3)';
-  }}
->
-  Join Run for Unity
-</Button>
-
-
-            </Link>
             <Button 
               size="lg" 
               onClick={handleJoinClick}

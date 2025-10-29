@@ -1,6 +1,6 @@
+import { AnimatePresence, motion } from 'framer-motion';
+import { CheckCircle, Clock, Users } from 'lucide-react';
 import React, { useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle, Clock, MapPin, Users } from 'lucide-react';
 
 interface MarathonSuccessModalProps {
   isOpen: boolean;
@@ -124,7 +124,7 @@ export const MarathonSuccessModal: React.FC<MarathonSuccessModalProps> = ({
                 lineHeight: '1.5'
               }}
             >
-              You have registered in <strong style={{ color: '#10b981' }}>Run for Unity</strong> on 2nd October 2025
+              Registration completed successfully!
             </motion.p>
 
             {/* Event Details */}
@@ -143,11 +143,6 @@ export const MarathonSuccessModal: React.FC<MarathonSuccessModalProps> = ({
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem' }}>
                 <Clock style={{ width: '20px', height: '20px', color: '#10b981' }} />
                 <span style={{ fontWeight: '600', color: '#374151' }}>Event Details</span>
-              </div>
-              
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.5rem' }}>
-                <MapPin style={{ width: '16px', height: '16px', color: '#6b7280' }} />
-                <span style={{ color: '#6b7280', fontSize: '0.875rem' }}>2nd October 2025</span>
               </div>
               
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
