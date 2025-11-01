@@ -1,13 +1,16 @@
 import React, { useEffect } from 'react';
-import { Navigate, Route, HashRouter as Router, Routes, useNavigate } from 'react-router-dom';
+import { Navigate, Route, BrowserRouter as Router, Routes, useNavigate } from 'react-router-dom';
 import { AboutSection } from './components/AboutSection';
 import { ChallengesPage } from './components/ChallengesPage';
 import { Footer } from './components/Footer';
+import { HelpAndSupport } from './components/HelpAndSupport';
 import { HeroSection } from './components/HeroSection';
 import { LoginPage } from './components/LoginPage';
 import { MicroGamification } from './components/MicroGamification';
 import { MissionSection } from './components/MissionSection';
 import { MovementStory } from './components/MovementStory';
+import { PrivacyPolicy } from './components/PrivacyPolicy';
+import { TermsAndConditions } from './components/TermsAndConditions';
 import { Toaster } from './components/ui/sonner';
 import config, { validateEnvironment } from './utils/config';
 import { clearAllAuthData, getCookie, getCurrentUser, setCookie } from './utils/cookies';
@@ -173,6 +176,9 @@ function AppRoutes() {
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/login" element={<LoginPage />} />
+      <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+      <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+      <Route path="/helpAndSupport" element={<HelpAndSupport />} />
       <Route path="/challenges" element={
         <ProtectedRoute children={<ChallengesPage />} />
       } />
