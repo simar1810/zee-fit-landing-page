@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Navigate, Route, BrowserRouter as Router, Routes, useNavigate } from 'react-router-dom';
 import { AboutSection } from './components/AboutSection';
+import { ApplyNow } from './components/ApplyNow';
 import { ChallengesPage } from './components/ChallengesPage';
 import { Footer } from './components/Footer';
 import { HelpAndSupport } from './components/HelpAndSupport';
@@ -176,6 +177,7 @@ function AppRoutes() {
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/login" element={<LoginPage />} />
+      <Route path="/apply-now" element={<ApplyNow />} />
       <Route path="/privacy-policy" element={<PrivacyPolicy />} />
       <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
       <Route path="/helpAndSupport" element={<HelpAndSupport />} />
